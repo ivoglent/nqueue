@@ -1,17 +1,3 @@
-# nqueue 
-Simple processing queue for nodejs
-
-## Quick start
-
-```
-$ npm i -g nqueue
-```
-
-## Usage
-
-Example code : 
-
-```typescript
 import {expect} from 'chai';
 import 'mocha';
 import {queue} from "../src/components/queue";
@@ -38,5 +24,3 @@ describe('Test internal queue', () => {
         done();
    });
 });
-
-```

@@ -1,5 +1,5 @@
 {
-  "name": "nqueue",
+  "name": "@ivoglent/nqueue",
   "version": "1.0.0",
   "description": "Simple processing queue for nodejs",
   "main": "index.js",
