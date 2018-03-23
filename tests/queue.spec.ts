@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import 'mocha';
-import {queue} from "../src/components/queue";
-import {QueueItemInterface} from "../src/interfaces/queue.interface";
+import {queue} from "../src/queue";
+import {QueueItemInterface} from "../src/queue.interface";
 queue.setHander(
     {
         execute : function (item: QueueItemInterface): Promise<boolean> {

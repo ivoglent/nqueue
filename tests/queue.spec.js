@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
-var queue_1 = require("../src/components/queue");
+var queue_1 = require("../src/queue");
 queue_1.queue.setHander({
     execute: function (item) {
         return new Promise((function (resolve) {
