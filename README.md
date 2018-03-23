@@ -4,7 +4,7 @@ Simple processing queue for nodejs
 ## Quick start
 
 ```
-$ npm i -g nqueue
+$ npm i --save @ivoglent/nqueue
 ```
 
 ## Usage
