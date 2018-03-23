@@ -1,0 +1,40 @@
+{
+  "name": "nqueue",
+  "version": "1.0.0",
+  "description": "Simple processing queue for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivoglent/nqueue.git"
+  },
+  "keywords": [
+    "node",
+    "queue",
+    "nodejs",
+    "queue",
+    "js",
+    "queue"
+  ],
+  "author": "Ivoglent Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivoglent/nqueue/issues"
+  },
+  "homepage": "https://github.com/ivoglent/nqueue#readme",
+  "dependencies": {
+    "async": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.8",
+    "@types/mocha": "^2.2.44",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.0.6",
+    "typings": "^2.1.1",
+    "yargs": "^10.0.3"
+  }
+}
