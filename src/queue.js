@@ -70,6 +70,10 @@ var Queue = /** @class */ (function () {
     Queue.prototype.getItems = function () {
         return this._stack;
     };
+    Queue.prototype.clearItems = function () {
+        this._stack = [];
+        this._status = 0;
+    };
     /**
      *
      * @param {QueueItemInterface} item

@@ -84,6 +84,12 @@ class Queue implements QueueInterface{
     getItems() : QueueItemInterface[] {
         return this._stack;
     }
+
+
+    clearItems(): void {
+        this._stack = [];
+        this._status = 0;
+    }
     /**
      *
      * @param {QueueItemInterface} item

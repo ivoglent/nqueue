@@ -70,6 +70,10 @@ class Queue {
     getItems() {
         return this._stack;
     }
+    clearItems() {
+        this._stack = [];
+        this._status = 0;
+    }
     /**
      *
      * @param {QueueItemInterface} item

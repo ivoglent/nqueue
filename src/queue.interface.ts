@@ -25,6 +25,9 @@ export interface QueueInterface{
      */
     getItems() : QueueItemInterface[];
 
+
+    clearItems() : void;
+
     /**
      *
      * @param {QueueItemInterface} item

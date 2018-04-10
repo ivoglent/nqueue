@@ -1,10 +1,10 @@
 {
   "name": "@ivoglent/nqueue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple processing queue for nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha -r ts-node/register ./tests/*.spec.ts --timeout=30000"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "@types/node": "^9.6.0",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
+    "q": "^1.5.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.0.6",
     "typings": "^2.1.1",
