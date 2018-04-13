@@ -26,7 +26,7 @@ export interface QueueInterface{
     getItems() : QueueItemInterface[];
 
 
-    clearItems() : void;
+    clearItems() : QueueInterface;
 
     /**
      *
@@ -34,6 +34,4 @@ export interface QueueInterface{
      * @returns {QueueInterface}
      */
     push(item: QueueItemInterface): QueueInterface;
-
-    start(): any
 }

@@ -3,7 +3,7 @@ import {EventEmitter} from "events";
 
 const async = require('async');
 
-class Queue implements QueueInterface{
+export class Queue implements QueueInterface{
     /**
      * Main stack which stored all queue items
      * @type {QueueItemInterface[]}
@@ -28,7 +28,7 @@ class Queue implements QueueInterface{
      * @type {boolean}
      * @private
      */
-    _status: number = 0;
+    _current: number = 0;
 
     /**
      * Internal event handle
@@ -36,12 +36,14 @@ class Queue implements QueueInterface{
      */
     _internalEvent: EventEmitter;
 
+
     /**
+     * Lock queue processing
      *
-     * @type {number}
+     * @type {boolean}
      * @private
      */
-    _waitingInterval: number = 100;
+    _locked : boolean = false;
 
     /**
      * Constructor
@@ -85,10 +87,14 @@ class Queue implements QueueInterface{
         return this._stack;
     }
 
-
-    clearItems(): void {
+    /**
+     *
+     * @returns {this}
+     */
+    clearItems() {
         this._stack = [];
-        this._status = 0;
+        this._current = 0;
+        return this;
     }
     /**
      *
@@ -113,22 +119,24 @@ class Queue implements QueueInterface{
      * If it has enough queued items then run exec handle
      */
     private checkQueue() {
-        if (this._stack.length > 0  && this._status < this._numberOfExecution) {
+        if (this._locked === false && this._stack.length > 0  && this._current < this._numberOfExecution) {
+            this._locked = true;
             console.log('Received new item');
             let items = [];
-            let remainSlots = this._numberOfExecution - this._status;
+            let remainSlots = this._numberOfExecution - this._current;
             let max = this._stack.length >  remainSlots ? remainSlots : this._stack.length;
             for(let i = 0; i <  max; i++) {
                 items.push(this._stack[i]);
             }
             this._stack.splice(0,  max);
-            this._status -= max;
+            this._current += max;
             this.execute(items).then(function () {
 
             }, function (error) {
                 console.log(error);
 
             });
+            this._locked = false;
         }
     }
 
@@ -141,12 +149,14 @@ class Queue implements QueueInterface{
         return new Promise(((resolve, reject) => {
             async.each(items, function (item, next) {
                 self._handler.execute(item).then(function (result) {
-                    self._status -= 1;
+                    self._current -= 1;
                     next();
+                    self._internalEvent.emit('queued');
                 }, function (error) {
                     console.log(error);
-                    self._status -= 1;
+                    self._current -= 1;
                     next();
+                    self._internalEvent.emit('queued');
                 })
             }, function (error) {
                 if (error) {
@@ -159,17 +169,7 @@ class Queue implements QueueInterface{
             })
         }));
     }
-    /**
-     *
-     * @returns {QueueInterface}
-     */
-    public start() {
-        let self = this;
-        setInterval(function (item) {
-            self.checkQueue();
-        }, this._waitingInterval);
-        return this;
-    }
+
 }
 
 export const queue = new Queue();
